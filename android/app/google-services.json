@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "54145250648",
+    "project_id": "genius-public-school-2ec77",
+    "storage_bucket": "genius-public-school-2ec77.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54145250648:android:a812f178d40653e3a3a12d",
+        "android_client_info": {
+          "package_name": "com.geniuspublicschool.apppro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAc22CY4PSgXWMYtOHxdh-hImvRL-4wqmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
