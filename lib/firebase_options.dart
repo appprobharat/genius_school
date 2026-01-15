@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyC3Tm7P1X8DwDyhs0ZMzopd8toL-tQVv-g',
-    appId: '1:54145250648:ios:36b86cdb43762ed9a3a12d',
+    appId: '1:54145250648:ios:1713bb013eef6ba6a3a12d',
     messagingSenderId: '54145250648',
     projectId: 'genius-public-school-2ec77',
     storageBucket: 'genius-public-school-2ec77.firebasestorage.app',
-    iosBundleId: 'com.example.geniusSchool',
+    iosBundleId: 'com.geniuspublicschool.apppro',
   );
 }
