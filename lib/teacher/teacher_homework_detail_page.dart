@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:genius_school/api_service.dart';
 
 class TeacherHomeworkDetailPage extends StatelessWidget {
   final Map<String, dynamic> homework;
@@ -85,7 +86,7 @@ class TeacherHomeworkDetailPage extends StatelessWidget {
           "Homework Details",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
@@ -101,7 +102,7 @@ class TeacherHomeworkDetailPage extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.deepPurple,
+                  color: AppColors.primary,
                 ),
               ),
               const SizedBox(height: 12),
@@ -131,7 +132,7 @@ class TeacherHomeworkDetailPage extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.deepPurple,
+                      backgroundColor: AppColors.primary,
                     ),
                     onPressed: () {
                       String fileUrl = homework['Attachment'].toString();

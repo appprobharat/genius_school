@@ -95,7 +95,7 @@ class _TeacherProfilePageState extends State<TeacherProfilePage> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: Card(

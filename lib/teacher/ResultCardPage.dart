@@ -226,7 +226,7 @@ class _ResultCardPageState extends State<ResultCardPage> {
             // ---------------- RESULTS ----------------
             Expanded(
               child: isLoading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
                   : filteredResults.isEmpty
                   ? const Center(child: Text('No results found.'))
                   : ListView.builder(

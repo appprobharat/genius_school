@@ -211,6 +211,7 @@ class AppColors {
   static const success = Colors.lightGreen;
   static const danger = Colors.red;
   static const info = Colors.blue;
+  static const designerColor = Colors.orange;
 }
 
 class AppAssets {

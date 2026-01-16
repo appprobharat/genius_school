@@ -124,7 +124,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
           style: TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -170,7 +170,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 child: ElevatedButton(
                   onPressed: isSubmitting ? null : handleChangePassword,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: AppColors.primary,
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   child: isSubmitting

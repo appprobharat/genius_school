@@ -104,7 +104,7 @@ class _FeeDetailsPageState extends State<FeeDetailsPage> {
     return Scaffold(
       // backgroundColor: const Color(0xfff7f2f9),
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         title: const Text("Fee Details", style: TextStyle(color: Colors.white)),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
@@ -126,7 +126,7 @@ class _FeeDetailsPageState extends State<FeeDetailsPage> {
                     label: Text(months[index]),
                     selected: isSelected,
                     checkmarkColor: Colors.white,
-                    selectedColor: Colors.deepPurple,
+                    selectedColor: AppColors.primary,
 
                     labelStyle: TextStyle(
                       color: isSelected ? Colors.white : Colors.black,
@@ -144,7 +144,7 @@ class _FeeDetailsPageState extends State<FeeDetailsPage> {
           Expanded(
             child: isLoading
                 ? const Center(
-                    child: CircularProgressIndicator(color: Colors.deepPurple),
+                    child: CircularProgressIndicator(color: AppColors.primary),
                   )
                 : feeData.isEmpty
                 ? const Center(child: Text("No fee records for this month"))
@@ -161,7 +161,7 @@ class _FeeDetailsPageState extends State<FeeDetailsPage> {
                         child: ListTile(
                           leading: const Icon(
                             Icons.credit_card,
-                            color: Colors.deepPurple,
+                            color: AppColors.primary,
                           ),
                           title: Text("₹${record['Fee']}"),
                           subtitle: Text("Mode: ${record['FeeName']}"),

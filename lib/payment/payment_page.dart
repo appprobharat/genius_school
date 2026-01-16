@@ -138,13 +138,13 @@ class _PaymentPageState extends State<PaymentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("My Payments", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         centerTitle: true,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: isLoading
           ? const Center(
-              child: CircularProgressIndicator(color: Colors.deepPurple),
+              child: CircularProgressIndicator(color: AppColors.primary),
             )
           : ListView.builder(
               itemCount: payments.length,
@@ -233,7 +233,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               child: IconButton(
                                 icon: const Icon(
                                   Icons.download,
-                                  color: Colors.deepPurple,
+                                  color: AppColors.primary,
                                 ),
                                 onPressed: () => downloadReceipt(payment['id']),
                               ),

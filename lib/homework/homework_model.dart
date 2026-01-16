@@ -68,15 +68,14 @@ Future<void> downloadFile(BuildContext context, String filePath) async {
     }
   } catch (e) {
     if (context.mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("❌ Download failed")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("❌ Download failed")));
     }
   } finally {
     _isDownloading = false;
   }
 }
-
 
 // ====================================================
 // 📝 RECENT HOMEWORKS WIDGET (UI UNCHANGED)
@@ -111,7 +110,7 @@ Widget buildRecentHomeworks(
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
+                color: AppColors.primary,
               ),
             ),
             TextButton(
@@ -121,7 +120,10 @@ Widget buildRecentHomeworks(
                   MaterialPageRoute(builder: (_) => const HomeworkPage()),
                 );
               },
-              child: const Text("View All"),
+              child: const Text(
+                "View All",
+                style: TextStyle(color: AppColors.primary),
+              ),
             ),
           ],
         ),
@@ -143,7 +145,7 @@ Widget buildRecentHomeworks(
                         ),
                       );
                     },
-                    leading: const Icon(Icons.book, color: Colors.deepPurple),
+                    leading: const Icon(Icons.book, color: AppColors.primary),
                     title: Text(
                       hw['HomeworkTitle'] ?? '',
                       style: const TextStyle(fontSize: 14),
@@ -156,7 +158,7 @@ Widget buildRecentHomeworks(
                         ? IconButton(
                             icon: const Icon(
                               Icons.download,
-                              color: Colors.deepPurple,
+                              color: AppColors.primary,
                             ),
                             onPressed: () {
                               downloadFile(context, hw['Attachment']);

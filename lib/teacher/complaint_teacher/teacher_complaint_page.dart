@@ -119,7 +119,7 @@ class _TeacherComplaintPageState extends State<TeacherComplaintPage> {
         foregroundColor: Colors.white,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Column(

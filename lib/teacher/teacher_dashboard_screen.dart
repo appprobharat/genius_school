@@ -167,10 +167,16 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
         ),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            )
           : Column(
               children: [
-                if (isRefreshing) const LinearProgressIndicator(minHeight: 3),
+                if (isRefreshing)
+                  const LinearProgressIndicator(
+                    minHeight: 3,
+                    color: AppColors.primary,
+                  ),
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),

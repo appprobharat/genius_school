@@ -126,11 +126,11 @@ class _AttendanceAnalyticsPageState extends State<AttendanceAnalyticsPage> {
           "Attendance Analysis",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : data == null
               ? const Center(child: Text("No data found"))
               : SafeArea(
@@ -268,7 +268,7 @@ class AttendanceAnalyticsWidget extends StatelessWidget {
                         BarChartRodData(
                           toY:
                               (e.value['percentage'] ?? 0).toDouble(),
-                          color: Colors.deepPurple,
+                          color: AppColors.primary,
                           width: 14,
                           borderRadius: BorderRadius.circular(4),
                         ),

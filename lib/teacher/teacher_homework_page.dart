@@ -151,7 +151,7 @@ class _TeacherHomeworkPageState extends State<TeacherHomeworkPage> {
         foregroundColor: Colors.white,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : homeworks.isEmpty
           ? const Center(child: Text('No homework found.'))
           : ListView.builder(

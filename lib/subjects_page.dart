@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:flutter/material.dart';
+import 'package:genius_school/api_service.dart';
 
 class SubjectsPage extends StatefulWidget {
   @override
@@ -20,54 +20,31 @@ class _SubjectsPageState extends State<SubjectsPage> {
 
   Future<void> fetchSubjects() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-
-      // ✅ FIX: correct token key
-      final token = prefs.getString('auth_token') ?? '';
-
-      if (token.isEmpty) {
-        if (!mounted) return;
-        setState(() => isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Session expired. Please login again.')),
-        );
-        return;
-      }
-
-      final response = await http.post(
-        Uri.parse('https://school.edusathi.in/api/student/subject'),
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-        },
+      final response = await ApiService.post(
+        context,
+        "/student/subject", // ✅ only endpoint
       );
 
       if (!mounted) return;
 
+      if (response == null) {
+        setState(() => isLoading = false);
+        return;
+      }
+
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
 
-        if (data is List) {
-          setState(() {
+        setState(() {
+          if (data is List) {
             subjects = data;
-            isLoading = false;
-          });
-        } else if (data is Map && data.containsKey('data')) {
-          setState(() {
+          } else if (data is Map && data.containsKey('data')) {
             subjects = data['data'] ?? [];
-            isLoading = false;
-          });
-        } else {
-          setState(() => isLoading = false);
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Unexpected response format')),
-          );
-        }
-      } else if (response.statusCode == 401) {
-        setState(() => isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Unauthorized. Please login again.')),
-        );
+          } else {
+            subjects = [];
+          }
+          isLoading = false;
+        });
       } else {
         setState(() => isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -77,9 +54,9 @@ class _SubjectsPageState extends State<SubjectsPage> {
     } catch (e) {
       if (!mounted) return;
       setState(() => isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
@@ -88,38 +65,40 @@ class _SubjectsPageState extends State<SubjectsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Subjects', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         centerTitle: true,
         leading: const BackButton(color: Colors.white),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(color: AppColors.primary),
+            )
           : subjects.isEmpty
-              ? const Center(child: Text("No subjects found."))
-              : ListView.builder(
-                  padding: const EdgeInsets.all(12),
-                  itemCount: subjects.length,
-                  itemBuilder: (context, index) {
-                    final subject = subjects[index];
-                    return Card(
-                      elevation: 3,
-                      margin: const EdgeInsets.only(bottom: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.book_outlined,
-                          color: Colors.deepPurple,
-                        ),
-                        title: Text(
-                          subject['Subject'] ?? '',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+          ? const Center(child: Text("No subjects found."))
+          : ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: subjects.length,
+              itemBuilder: (context, index) {
+                final subject = subjects[index];
+                return Card(
+                  elevation: 3,
+                  margin: const EdgeInsets.only(bottom: 12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.book_outlined,
+                      color: AppColors.primary,
+                    ),
+                    title: Text(
+                      subject['Subject'] ?? '',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                );
+              },
+            ),
     );
   }
 }

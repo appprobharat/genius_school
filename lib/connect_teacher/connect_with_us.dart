@@ -199,7 +199,7 @@ class _ConnectWithUsPageState extends State<ConnectWithUsPage> {
         backgroundColor: AppColors.primary,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : Column(
               children: [
                 Expanded(

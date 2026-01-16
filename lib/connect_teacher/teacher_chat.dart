@@ -184,7 +184,7 @@ class _TeacherChatScreenState extends State<TeacherChatScreen> {
         children: [
           Expanded(
             child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
                 : messages.isEmpty
                     ? const Center(child: Text("No messages yet"))
                     : ListView.builder(

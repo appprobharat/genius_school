@@ -140,7 +140,7 @@ class _TeacherChatStudentListPageState
         ],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : filteredStudents.isEmpty
               ? const Center(
                   child: Text(

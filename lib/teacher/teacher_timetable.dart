@@ -113,7 +113,7 @@ class _TeacherTimeTablePageState extends State<TeacherTimeTablePage> {
           style: TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
       ),
       body: Column(
         children: [
@@ -124,7 +124,7 @@ class _TeacherTimeTablePageState extends State<TeacherTimeTablePage> {
             child: isLoading
                 ? const Center(
                     child: CircularProgressIndicator(
-                      color: Colors.deepPurple,
+                      color: AppColors.primary,
                     ),
                   )
                 : periods.isEmpty
@@ -141,7 +141,7 @@ class _TeacherTimeTablePageState extends State<TeacherTimeTablePage> {
                                   'LUNCH');
 
                           Color bgColor =
-                              slot == "2" ? Colors.orange : Colors.deepPurple;
+                              slot == "2" ? Colors.orange : AppColors.primary;
 
                           return Card(
                             margin: const EdgeInsets.only(bottom: 12),
@@ -263,9 +263,9 @@ class _TeacherTimeTablePageState extends State<TeacherTimeTablePage> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               decoration: BoxDecoration(
-                color: isSelected ? Colors.deepPurple : Colors.transparent,
+                color: isSelected ? AppColors.primary : Colors.transparent,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.deepPurple, width: 1.2),
+                border: Border.all(color: AppColors.primary, width: 1.2),
               ),
               child: Row(
                 children: [

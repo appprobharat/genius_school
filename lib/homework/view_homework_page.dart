@@ -19,7 +19,7 @@ class ViewHomeworksPage extends StatelessWidget {
           "Assigned Homeworks",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: ListView.builder(
@@ -48,7 +48,7 @@ class ViewHomeworksPage extends StatelessWidget {
                   ? IconButton(
                       icon: const Icon(
                         Icons.download,
-                        color: Colors.deepPurple,
+                        color: AppColors.primary,
                       ),
                       onPressed: () {
                         String fileUrl = hw['Attachment'];

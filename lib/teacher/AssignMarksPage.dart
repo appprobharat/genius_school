@@ -558,7 +558,7 @@ class _AssignMarksPageState extends State<AssignMarksPage> {
                 ),
             ],
           ),
-          if (isLoading) const Center(child: CircularProgressIndicator()),
+          if (isLoading) const Center(child: CircularProgressIndicator(color: AppColors.primary),),
         ],
       ),
     );

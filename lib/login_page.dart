@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(30),
                   gradient: selectedRole == 'Student'
                       ? LinearGradient(
-                          colors: [Colors.lightGreen, AppColors.primary],
+                          colors: [Colors.purple, AppColors.primary],
                         )
                       : null,
                 ),
@@ -178,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.circular(30),
                   gradient: selectedRole == 'Teacher'
                       ? LinearGradient(
-                          colors: [Colors.lightGreen, AppColors.primary],
+                          colors: [Colors.purple, AppColors.primary],
                         )
                       : null,
                 ),
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                   Text(
                     AppAssets.schoolName,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: AppColors.primary,
                     ),
@@ -354,14 +354,14 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: WrapAlignment.center,
                     children: [
                       Text(
-                        "Designed & Developed by ",
+                        "Powered by ",
                         style: TextStyle(fontSize: 12),
                       ),
                       Text(
-                        AppAssets.designer,
+                        "TechInnovation App Pvt. Ltd.®",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.lightGreen,
+                          color: AppColors.designerColor,
                           fontSize: 12,
                         ),
                       ),

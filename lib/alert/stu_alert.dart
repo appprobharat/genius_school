@@ -197,7 +197,7 @@ class _StudentAlertPageState extends State<StudentAlertPage> {
       ),
 
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : Column(
               children: [
                 // MESSAGE BOX

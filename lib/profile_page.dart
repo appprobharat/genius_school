@@ -127,11 +127,11 @@ class _ProfilePageState extends State<ProfilePage> {
           "Student Profile",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : Padding(
               padding: const EdgeInsets.all(16),
               child: Card(
@@ -206,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           style: TextStyle(color: Colors.white),
                         ),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
+                          backgroundColor: AppColors.primary,
                         ),
                       ),
                     ],
@@ -222,7 +222,7 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         children: [
-          Icon(icon, color: Colors.deepPurple),
+          Icon(icon, color: AppColors.primary),
           const SizedBox(width: 10),
           Text("$title: ", style: const TextStyle(fontWeight: FontWeight.bold)),
           Expanded(child: Text(value, overflow: TextOverflow.ellipsis)),

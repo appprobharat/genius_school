@@ -142,12 +142,12 @@ class _SchoolInfoPageState extends State<SchoolInfoPage> {
           "School Information",
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         leading: const BackButton(color: Colors.white),
       ),
-      backgroundColor: Colors.deepPurple[50],
+      backgroundColor: AppColors.primary[50],
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : SingleChildScrollView(
               child: Card(
                 margin: const EdgeInsets.all(16),
@@ -175,7 +175,7 @@ class _SchoolInfoPageState extends State<SchoolInfoPage> {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.deepPurple,
+                              color: AppColors.primary,
                             ),
                           ),
                         ],
@@ -232,7 +232,7 @@ class _SchoolInfoPageState extends State<SchoolInfoPage> {
                           "Payment QR Code",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple,
+                            color: AppColors.primary,
                             fontSize: 16,
                           ),
                         ),
@@ -262,7 +262,7 @@ class _SchoolInfoPageState extends State<SchoolInfoPage> {
                             style: const TextStyle(color: Colors.white),
                           ),
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: AppColors.primary,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30),
                             ),

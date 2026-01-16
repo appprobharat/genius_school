@@ -124,7 +124,7 @@ Future<void> fetchNotifications() async {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : notifications.isEmpty
           ? const Center(child: Text("No notifications available"))
           : ListView.builder(

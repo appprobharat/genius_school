@@ -285,7 +285,7 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Mark Attendance"),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: Colors.white),
         foregroundColor: Colors.white,
       ),
@@ -295,13 +295,13 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                const Icon(Icons.calendar_today, color: Colors.deepPurple),
+                const Icon(Icons.calendar_today, color: AppColors.primary),
                 const SizedBox(width: 10),
                 Text("Date: ${DateFormat('dd-MM-yyyy').format(selectedDate)}"),
                 const Spacer(),
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurple,
+                    backgroundColor: AppColors.primary,
                   ),
                   onPressed: pickDate,
                   icon: const Icon(Icons.edit_calendar, color: Colors.white),
@@ -320,17 +320,17 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
               controller: searchController,
               decoration: InputDecoration(
                 hintText: "Search student...",
-                prefixIcon: const Icon(Icons.search, color: Colors.deepPurple),
+                prefixIcon: const Icon(Icons.search, color: AppColors.primary),
                 filled: true,
-                fillColor: Colors.deepPurple.shade50,
+                fillColor: AppColors.primary.shade50,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
-                  borderSide: const BorderSide(color: Colors.deepPurple),
+                  borderSide: const BorderSide(color: AppColors.primary),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(25),
                   borderSide: const BorderSide(
-                    color: Colors.deepPurple,
+                    color: AppColors.primary,
                     width: 2,
                   ),
                 ),
@@ -354,7 +354,7 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
               ),
             ),
 
-          if (isLoading) const Center(child: CircularProgressIndicator()),
+          if (isLoading) const Center(child: CircularProgressIndicator(color: AppColors.primary),),
           if (!isLoading && students.isNotEmpty)
             Expanded(
               child: ListView.builder(
@@ -469,10 +469,10 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
               child: SizedBox(
                 width: double.infinity,
                 child: isSubmitting
-                    ? const Center(child: CircularProgressIndicator())
+                    ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
                     : ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
+                          backgroundColor: AppColors.primary,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                         ),
                         onPressed: () async {

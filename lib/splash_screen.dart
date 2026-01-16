@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset(AppAssets.logo, height: 120),
             const SizedBox(height: 20),
-            const CircularProgressIndicator(color: Colors.deepPurple),
+            const CircularProgressIndicator(color: AppColors.primary),
           ],
         ),
       ),

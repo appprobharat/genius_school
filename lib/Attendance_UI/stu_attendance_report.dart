@@ -131,7 +131,7 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
           'My Attendance',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: AppColors.primary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Stack(
@@ -149,7 +149,7 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
               child: Container(
                 color: Colors.black.withOpacity(0.1),
                 child: const Center(
-                  child: CircularProgressIndicator(color: Colors.deepPurple),
+                  child: CircularProgressIndicator(color: AppColors.primary),
                 ),
               ),
             ),
@@ -351,7 +351,7 @@ class _StudentAttendanceScreenState extends State<StudentAttendanceScreen> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
+              color: AppColors.primary,
             ),
           ),
           const SizedBox(height: 12),

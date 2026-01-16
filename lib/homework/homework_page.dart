@@ -145,7 +145,7 @@ class _HomeworkPageState extends State<HomeworkPage> {
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : homeworks.isEmpty
           ? const Center(child: Text("No homework available"))
           : ListView.builder(

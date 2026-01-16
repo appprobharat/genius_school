@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:genius_school/api_service.dart';
 
 class AttendanceCard extends StatelessWidget {
   final String title;
@@ -74,7 +75,7 @@ class AttendanceCard extends StatelessWidget {
             const SizedBox(height: 8),
             Row(
               children: [
-                Icon(icon, color: Colors.deepPurple, size: 28),
+                Icon(icon, color: AppColors.primary, size: 28),
                 const SizedBox(width: 8),
                 Text(
                   place,

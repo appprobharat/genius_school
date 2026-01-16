@@ -242,7 +242,7 @@ Future<void> fetchSkills() async {
         foregroundColor: Colors.white,
       ),
       body: isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
           : ListView(
               padding: const EdgeInsets.all(16),
               children: [
@@ -420,7 +420,7 @@ Future<void> fetchSkills() async {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     child: isSubmitting
-                        ? const Center(child: CircularProgressIndicator())
+                        ? const Center(child: CircularProgressIndicator(color: AppColors.primary),)
                         : SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
