@@ -22,7 +22,7 @@ class _SubjectsPageState extends State<SubjectsPage> {
     try {
       final response = await ApiService.post(
         context,
-        "/student/subject", // ✅ only endpoint
+        "/student/subject", 
       );
 
       if (!mounted) return;
