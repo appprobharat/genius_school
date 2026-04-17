@@ -31,7 +31,7 @@ class _StudentAlertPageState extends State<StudentAlertPage> {
     final res = await ApiService.post(
       context,
       "/teacher/student/list",
-      body: {},
+      body: {"type": "all"},
     );
 
     if (res != null && res.statusCode == 200) {

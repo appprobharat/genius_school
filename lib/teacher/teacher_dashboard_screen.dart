@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:genius_school/api_service.dart';
 import 'package:genius_school/main.dart';
-import 'package:genius_school/payment/payment_teacher_screen.dart';
 import 'package:genius_school/teacher/complaint_teacher/teacher_complaint_list_page.dart';
 import 'package:genius_school/teacher/student_list.dart';
 import 'package:genius_school/teacher/teacher_recent_homework.dart';
@@ -184,56 +183,45 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => StudentListPage(),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => StudentListPage(),
+                                  ),
                                 ),
-                              ),
-                              child: DashboardCard(
-                                title: 'Students',
-                                value: students.toString(),
-                                borderColor: Colors.blue,
-                                backgroundColor: const Color(0xFFE3F2FD),
-                                textColor: Colors.blue,
+                                child: DashboardCard(
+                                  title: 'Students',
+                                  value: students.toString(),
+                                  borderColor: Colors.blue,
+                                  backgroundColor: const Color(0xFFE3F2FD),
+                                  textColor: Colors.blue,
+                                ),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => PaymentTeacherScreen(),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => TeacherComplaintListPage(),
+                                  ),
                                 ),
-                              ),
-                              child: DashboardCard(
-                                title: 'Payments',
-                                value: payments.toString(),
-                                borderColor: Colors.green,
-                                backgroundColor: const Color(0xFFE8F5E9),
-                                textColor: Colors.green,
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => TeacherComplaintListPage(),
+                                child: DashboardCard(
+                                  title: 'Complaints',
+                                  value: complaints.toString(),
+                                  borderColor: Colors.red,
+                                  backgroundColor: const Color(0xFFFFEBEE),
+                                  textColor: Colors.red,
                                 ),
-                              ),
-                              child: DashboardCard(
-                                title: 'Complaints',
-                                value: complaints.toString(),
-                                borderColor: Colors.red,
-                                backgroundColor: const Color(0xFFFFEBEE),
-                                textColor: Colors.red,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 30),
+                        const SizedBox(height: 20),
                         AttendancePieChart(
                           present: attendance['present'] ?? 0,
                           absent: attendance['absent'] ?? 0,

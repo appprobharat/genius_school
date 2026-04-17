@@ -27,32 +27,51 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 
-	<key>CFBundleSignature</key>
-	<string>????</string>
-
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 
+	<!-- Launch Screen -->
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<!-- ❌ REMOVE Main storyboard (this was causing crash) -->
 
-	<!-- 🔥 IMPORTANT PERMISSIONS -->
+	<!-- ✅ iPhone + iPad support -->
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+		<integer>2</integer>
+	</array>
+
+	<!-- ================= PERMISSIONS ================= -->
+
+	<!-- Photo -->
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires photo access to upload or select images.</string>
+	<string>This app requires photo library access to select images.</string>
 
+	<!-- ✅ Location (Geo Attendance proper setup) -->
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs location access for attendance and location-based features.</string>
+	<string>This app uses location to mark teacher attendance within school premises.</string>
+
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app uses location to mark teacher attendance within school premises.</string>
 
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>This app uses location to ensure accurate attendance tracking.</string>
 
-	<!-- UI -->
+	<!-- ================= NETWORK ================= -->
+
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+
+	<!-- ================= ORIENTATION ================= -->
+
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -67,6 +86,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<!-- ================= PERFORMANCE ================= -->
 
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>

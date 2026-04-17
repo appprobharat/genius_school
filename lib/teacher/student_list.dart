@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:genius_school/api_service.dart';
 
-
 class StudentListPage extends StatefulWidget {
   const StudentListPage({super.key});
 
@@ -32,6 +31,7 @@ class _StudentListPageState extends State<StudentListPage> {
       final response = await ApiService.post(
         context,
         '/teacher/student/list',
+        body: {"type": "all"},
       );
 
       if (response == null) {
@@ -88,11 +88,11 @@ class _StudentListPageState extends State<StudentListPage> {
   // ---------------- DATE FORMAT ----------------
   String formatDate(String? dob) {
     if (dob == null || dob.isEmpty) return 'N/A';
+
     try {
-      final date = DateTime.parse(dob);
-      return "${date.day.toString().padLeft(2, '0')}-"
-          "${date.month.toString().padLeft(2, '0')}-"
-          "${date.year}";
+      final parts = dob.split('-'); // dd-MM-yyyy
+
+      return "${parts[0]}-${parts[1]}-${parts[2]}"; // same format return
     } catch (_) {
       return 'Invalid';
     }
