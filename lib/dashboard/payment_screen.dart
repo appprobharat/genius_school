@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:genius_school/api_service.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class PaymentWebView extends StatefulWidget {
   final String paymentUrl;
-  final String successRedirectUrl; 
-  final String failureRedirectUrl; 
+  final String successRedirectUrl;
+  final String failureRedirectUrl;
   const PaymentWebView({
     super.key,
     required this.paymentUrl,
-    required this.successRedirectUrl, 
+    required this.successRedirectUrl,
     required this.failureRedirectUrl,
   });
   @override

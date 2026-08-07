@@ -320,7 +320,6 @@ class _MarkAttendancePageState extends State<MarkAttendancePage> {
 
                   const SizedBox(width: 8),
 
-                  // TYPE DROPDOWN
                   Expanded(
                     flex: 1,
                     child: Container(

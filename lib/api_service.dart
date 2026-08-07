@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -11,10 +12,8 @@ class ApiService {
   static const String baseUrl = "https://geniuspublicschool.apppro.in/api";
   static const String Url = "https://geniuspublicschool.apppro.in";
 
-  /// ⏱ Timeout (iOS safe)
   static const Duration timeout = Duration(seconds: 20);
 
-  /// 🔐 Secure storage (iOS + Android)
   static final FlutterSecureStorage _secureStorage = const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
     iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
@@ -37,6 +36,11 @@ class ApiService {
     final token = await _getToken();
     return {'Authorization': 'Bearer $token', 'Accept': 'application/json'};
   }
+
+  static Future<Map<String, String>> headers() async {
+    return await _headers();
+  }
+
   // ================= LOGOUT =================
 
   static Future<void> forceLogout(BuildContext context) async {
@@ -157,6 +161,59 @@ class ApiService {
     }
   }
 
+  static Future<http.StreamedResponse?> multipartPost(
+    BuildContext context,
+    String endpoint, {
+    Map<String, String>? fields,
+    File? file,
+    String fileKey = 'Attachment',
+  }) async {
+    final token = await _getToken();
+
+    if (token.isEmpty) {
+      await forceLogout(context);
+      return null;
+    }
+
+    try {
+      final request = http.MultipartRequest(
+        'POST',
+        Uri.parse("$baseUrl$endpoint"),
+      );
+
+      request.headers.addAll(await multipartHeaders());
+
+      // ✅ FIELDS
+      if (fields != null) {
+        request.fields.addAll(fields);
+      }
+
+      // ✅ FILE
+      if (file != null) {
+        request.files.add(
+          await http.MultipartFile.fromPath(fileKey, file.path),
+        );
+      }
+
+      final response = await request.send();
+
+      if (response.statusCode == 401) {
+        await forceLogout(context);
+        return null;
+      }
+
+      return response;
+    } on TimeoutException {
+      debugPrint("⏱ API TIMEOUT: $endpoint");
+
+      return null;
+    } catch (e) {
+      debugPrint("❌ MULTIPART ERROR => $e");
+
+      return null;
+    }
+  }
+
   // ================= SAVE SESSIONS =================
   static Future<void> saveSession(Map<String, dynamic> data) async {
     final prefs = await SharedPreferences.getInstance();
@@ -199,16 +256,6 @@ class ApiService {
   // ================= ATTACHMENTS =================
   static const siblingUrl =
       'https://geniuspublicschool.apppro.in/uploads/no_image.png';
-  static const String s3Base =
-      "https://s3.ap-south-1.amazonaws.com/geniuspublicschool.apppro.in";
-
-  static String attachmentUrl(String schoolId, String folder, String file) {
-    return "$s3Base/documents/$schoolId/$folder/$file";
-  }
-
-  static String homeworkAttachment(String fileName) {
-    return "$s3Base/homeworks/$fileName";
-  }
 }
 
 class AppColors {
@@ -217,6 +264,15 @@ class AppColors {
   static const danger = Colors.red;
   static const info = Colors.blue;
   static const designerColor = Colors.orange;
+  static const LinearGradient appBarGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      Color(0xFF059669), 
+      Color(0xFF10B981), 
+      Color(0xFF34D399), 
+    ],
+  );
 }
 
 class AppAssets {
