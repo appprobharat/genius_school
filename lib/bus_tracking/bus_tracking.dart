@@ -26,7 +26,7 @@ class _ParentBusTrackingPageState extends State<ParentBusTrackingPage> {
             children: [
               TileLayer(
                 urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                userAgentPackageName: "com.cbfpublicschool.apppro",
+                userAgentPackageName: "com.geniuspublicschool.apppro",
               ),
 
               MarkerLayer(
@@ -241,7 +241,7 @@ class TestMapPage extends StatelessWidget {
         children: [
           TileLayer(
             urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'com.cbfpublicschool.apppro',
+            userAgentPackageName: 'com.geniuspublicschool.apppro',
           ),
           MarkerLayer(
             markers: [

@@ -1,7 +1,7 @@
 import 'package:genius_school/homework/holiday/list_holiday_homework.dart';
 // import 'package:genius_school/leave/list_leaveApproval.dart';
 import 'package:genius_school/teacher/geo_attendance_mark.dart';
-// import 'package:genius_school/teacher/roll_no.dart';
+import 'package:genius_school/teacher/roll_no.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
@@ -262,12 +262,12 @@ class _TeacherSidebarMenuState extends State<TeacherSidebarMenu> {
             'Mark Geo Attd.',
             () => _navigate(context, const GeoAttendanceTeacher()),
           ),
-          // sidebarItem(
-          //   context,
-          //   Icons.format_list_numbered,
-          //   'Update Roll no',
-          //   () => _navigate(context, const UpdateRollNoPage()),
-          // ),
+          sidebarItem(
+            context,
+            Icons.format_list_numbered,
+            'Update Roll no',
+            () => _navigate(context, const UpdateRollNoPage()),
+          ),
           // sidebarItem(
           //   context,
           //   Icons.leave_bags_at_home_rounded,

@@ -36,12 +36,12 @@ class _PaymentWebViewState extends State<PaymentWebView> {
             final url = request.url;
             final lowerUrl = url.toLowerCase();
 
-            // ✅ Handle UPI
-            if (url.startsWith("upi://pay")) {
-              await launchUrl(
-                Uri.parse(url),
-                mode: LaunchMode.externalApplication,
-              );
+            // ✅ Handle UPI - Android + iOS
+            if (lowerUrl.startsWith("upi://")) {
+              final uri = Uri.parse(url);
+
+              await launchUrl(uri, mode: LaunchMode.externalApplication);
+
               return NavigationDecision.prevent;
             }
 

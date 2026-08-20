@@ -77,6 +77,13 @@
 <string>Save and manage homework attachments.</string>
 <key>NSCameraUsageDescription</key>
 <string>This app uses the camera to capture photos for homework, profile pictures, and other school-related activities.</string>
-
+<!-- UPI Apps -->
+<key>LSApplicationQueriesSchemes</key>
+<array>
+    <string>upi</string>
+    <string>tez</string>
+    <string>phonepe</string>
+    <string>paytmmp</string>
+</array>
 </dict>
 </plist>
