@@ -18,7 +18,7 @@ android {
         applicationId = "com.geniuspublicschool.apppro"
         minSdk = flutter.minSdkVersion
         targetSdk = 36
-        versionCode = 6
+        versionCode = 8
         versionName = "2.0.0"
     }
 

@@ -15,11 +15,10 @@ import 'package:genius_school/payment/payment_page.dart';
 import 'package:genius_school/profile_page.dart';
 import 'package:genius_school/school_info_page.dart';
 import 'package:genius_school/complaint/view_complaints_page.dart';
-
 import 'package:genius_school/Attendance_UI/stu_attendance_report.dart';
 import 'package:genius_school/subjects_page.dart';
 import 'package:genius_school/syllabus/syllabus.dart';
-// import 'package:genius_school/leave/leave_list.dart';
+import 'package:genius_school/leave/leave_list.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LeftSidebarMenu extends StatelessWidget {
@@ -289,12 +288,12 @@ class LeftSidebarMenu extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => SyllabusPage()),
               );
             }),
-            // sidebarTile(context, Icons.leave_bags_at_home, 'Leave', () {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (_) => LeaveListPage()),
-            //   );
-            // }),
+            sidebarTile(context, Icons.leave_bags_at_home, 'Leave', () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => LeaveListPage()),
+              );
+            }),
             sidebarTile(
               context,
               Icons.receipt_long_outlined,

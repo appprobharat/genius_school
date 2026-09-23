@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:genius_school/api_service.dart';
-
 import 'package:genius_school/teacher/complaint_teacher/teacher_add_complaint_page.dart';
 import 'package:genius_school/teacher/complaint_teacher/teacher_complaint_details.dart';
 
@@ -182,19 +181,73 @@ class _TeacherComplaintListPageState extends State<TeacherComplaintListPage> {
                                     ),
                                   ],
                                 ),
+                                const SizedBox(height: 4),
 
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.school_outlined,
+                                      size: 13,
+                                      color: AppColors.primary,
+                                    ),
+
+                                    const SizedBox(width: 4),
+
+                                    Text(
+                                      "Class: ${complaint['Class'] ?? '-'}",
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey.shade600,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+
+                                    const SizedBox(width: 12),
+
+                                    Icon(
+                                      Icons.groups_outlined,
+                                      size: 13,
+                                      color: AppColors.primary,
+                                    ),
+
+                                    const SizedBox(width: 4),
+
+                                    Text(
+                                      "Section: ${complaint['Section'] ?? '-'}",
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey.shade600,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                                 const SizedBox(height: 5),
 
                                 Row(
                                   children: [
                                     Icon(
                                       Icons.calendar_today_outlined,
-                                      size: 12,
-                                      color: Colors.grey.shade600,
+                                      size: 13,
+                                      color: AppColors.primary,
                                     ),
                                     const SizedBox(width: 4),
                                     Text(
                                       formatDate(complaint['Date'] ?? ''),
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Icon(
+                                      Icons.person_outline_rounded,
+                                      size: 13,
+                                      color: AppColors.primary,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      "By: ${(int.tryParse(complaint['AssignedBy']?.toString() ?? '0') ?? 0) == 0 ? 'Admin' : 'Teacher'}",
                                       style: TextStyle(
                                         fontSize: 11,
                                         color: Colors.grey.shade600,
@@ -300,147 +353,181 @@ class _TeacherComplaintListPageState extends State<TeacherComplaintListPage> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(18),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    height: 56,
-                    width: 56,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(.12),
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.edit_note_rounded,
-                      color: AppColors.primary,
-                      size: 30,
-                    ),
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  const Text(
-                    "Update Complaint",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-
-                  const SizedBox(height: 4),
-
-                  Text(
-                    complaint['StudentName'] ?? "",
-                    style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
-                  ),
-
-                  const SizedBox(height: 18),
-
-                  DropdownButtonFormField<int>(
-                    value: selectedStatus,
-                    decoration: InputDecoration(
-                      labelText: "Complaint Status",
-                      prefixIcon: const Icon(Icons.flag_outlined),
-                      filled: true,
-                      fillColor: Colors.grey.shade100,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(14),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    items: const [
-                      DropdownMenuItem(value: 0, child: Text("Pending")),
-                      DropdownMenuItem(value: 1, child: Text("Solved")),
-                    ],
-                    onChanged: (v) {
-                      setDialogState(() {
-                        selectedStatus = v ?? 1;
-                      });
-                    },
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  TextField(
-                    controller: descController,
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      hintText: "Write update...",
-                      prefixIcon: const Padding(
-                        padding: EdgeInsets.only(bottom: 60),
-                        child: Icon(Icons.description_outlined),
-                      ),
-                      filled: true,
-                      fillColor: Colors.grey.shade100,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(14),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  Row(
+            insetPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 24,
+            ),
+            child: AnimatedPadding(
+              duration: const Duration(milliseconds: 200),
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.of(context).size.height * 0.85,
+                ),
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(vertical: 13),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text("Cancel"),
+                      Container(
+                        height: 56,
+                        width: 56,
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withOpacity(.12),
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.edit_note_rounded,
+                          color: AppColors.primary,
+                          size: 30,
                         ),
                       ),
 
-                      const SizedBox(width: 12),
+                      const SizedBox(height: 14),
 
-                      Expanded(
-                        child: ElevatedButton.icon(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            padding: const EdgeInsets.symmetric(vertical: 13),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                      const Text(
+                        "Update Complaint",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+
+                      const SizedBox(height: 4),
+
+                      Text(
+                        complaint['StudentName'] ?? "",
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 13,
+                        ),
+                      ),
+
+                      const SizedBox(height: 18),
+
+                      DropdownButtonFormField<int>(
+                        value: selectedStatus,
+                        isExpanded: true,
+                        decoration: InputDecoration(
+                          labelText: "Complaint Status",
+                          prefixIcon: const Icon(Icons.flag_outlined),
+                          filled: true,
+                          fillColor: Colors.grey.shade100,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        items: const [
+                          DropdownMenuItem(value: 0, child: Text("Pending")),
+                          DropdownMenuItem(value: 1, child: Text("Solved")),
+                        ],
+                        onChanged: (v) {
+                          setDialogState(() {
+                            selectedStatus = v ?? 1;
+                          });
+                        },
+                      ),
+
+                      const SizedBox(height: 14),
+
+                      TextField(
+                        controller: descController,
+                        maxLines: 4,
+                        decoration: InputDecoration(
+                          hintText: "Write update...",
+                          prefixIcon: const Padding(
+                            padding: EdgeInsets.only(bottom: 60),
+                            child: Icon(Icons.description_outlined),
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey.shade100,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton(
+                              style: OutlinedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 13,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text("Cancel"),
                             ),
                           ),
-                          icon: const Icon(Icons.save_outlined, size: 18),
-                          label: const Text("Save"),
-                          onPressed: () async {
-                            if (descController.text.trim().isEmpty) return;
 
-                            final prefs = await SharedPreferences.getInstance();
-                            final token = prefs.getString('auth_token') ?? '';
+                          const SizedBox(width: 12),
 
-                            await http.post(
-                              Uri.parse(
-                                "${ApiService.Url}/api/teacher/complaint/history/store",
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primary,
+                                foregroundColor: Colors.white,
+                                elevation: 0,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 13,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
                               ),
-                              headers: {
-                                'Authorization': 'Bearer $token',
-                                'Accept': 'application/json',
-                              },
-                              body: {
-                                'ComplaintId': complaint['id'].toString(),
-                                'Status': selectedStatus.toString(),
-                                'Description': descController.text.trim(),
-                              },
-                            );
+                              icon: const Icon(Icons.save_outlined, size: 18),
+                              label: const Text("Save"),
+                              onPressed: () async {
+                                if (descController.text.trim().isEmpty) {
+                                  return;
+                                }
 
-                            if (!mounted) return;
+                                final prefs =
+                                    await SharedPreferences.getInstance();
 
-                            Navigator.pop(context);
-                            fetchComplaints();
-                          },
-                        ),
+                                final token =
+                                    prefs.getString('auth_token') ?? '';
+
+                                await http.post(
+                                  Uri.parse(
+                                    "${ApiService.Url}/api/teacher/complaint/history/store",
+                                  ),
+                                  headers: {
+                                    'Authorization': 'Bearer $token',
+                                    'Accept': 'application/json',
+                                  },
+                                  body: {
+                                    'ComplaintId': complaint['id'].toString(),
+                                    'Status': selectedStatus.toString(),
+                                    'Description': descController.text.trim(),
+                                  },
+                                );
+
+                                if (!mounted) return;
+
+                                Navigator.pop(context);
+                                fetchComplaints();
+                              },
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
+                ),
               ),
             ),
           );

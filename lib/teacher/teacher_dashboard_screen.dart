@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:genius_school/connect_teacher/teacher_chat_list.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:genius_school/Attendance_UI/mark_attendance_page.dart';
@@ -8,7 +9,6 @@ import 'package:genius_school/api_service.dart';
 import 'package:genius_school/homework/teacher_add_homework_page.dart';
 import 'package:genius_school/leave/list_leaveApproval.dart';
 import 'package:genius_school/main.dart';
-import 'package:genius_school/payment/payment_teacher_screen.dart';
 import 'package:genius_school/teacher/complaint_teacher/teacher_complaint_list_page.dart';
 import 'package:genius_school/teacher/student_list.dart';
 import 'package:genius_school/teacher/teacher_recent_homework.dart';
@@ -31,7 +31,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
 
   int students = 0;
   int complaints = 0;
-  int payments = 0;
+  int requests = 0;
 
   String schoolName = '';
   String teacherPhoto = '';
@@ -134,7 +134,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
     } catch (_) {}
   }
 
-  // ---------------- DASHBOARD DATA ----------------
+
   Future<void> fetchDashboardData() async {
     try {
       final response = await ApiService.post(context, '/teacher/dashboard');
@@ -148,7 +148,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
       setState(() {
         students = data['students'] ?? 0;
         complaints = data['complaints'] ?? 0;
-        payments = int.tryParse(data['payments'].toString()) ?? 0;
+        requests = int.tryParse(data['leaves'].toString()) ?? 0;
         attendance = {
           'present': data['attendances']?['present'] ?? 0,
           'absent': data['attendances']?['absent'] ?? 0,
@@ -158,7 +158,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
         };
       });
     } catch (_) {
-      // silent
+     
     }
   }
 
@@ -271,7 +271,7 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
                       children: [
                         DashboardSummaryCard(
                           students: students,
-                          payments: payments,
+                          requests: requests,
                           complaints: complaints,
                         ),
                         const SizedBox(height: 12),
@@ -355,10 +355,10 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
                                     page: TeacherComplaintListPage(),
                                   ),
                                   QuickAction(
-                                    icon: Icons.payment,
-                                    title: "Payments",
+                                    icon: Icons.chat,
+                                    title: "Chat Students",
                                     color: Colors.teal,
-                                    page: const PaymentTeacherScreen(),
+                                    page: const TeacherChatStudentListPage(),
                                   ),
                                   QuickAction(
                                     icon: Icons.schedule,
@@ -557,13 +557,13 @@ class _TeacherDashboardScreenState extends State<TeacherDashboardScreen>
 
 class DashboardSummaryCard extends StatelessWidget {
   final int students;
-  final int payments;
+  final int requests;
   final int complaints;
 
   const DashboardSummaryCard({
     super.key,
     required this.students,
-    required this.payments,
+    required this.requests,
     required this.complaints,
   });
 
@@ -762,9 +762,9 @@ class DashboardSummaryCard extends StatelessWidget {
                         context: context,
                         icon: Icons.payments_rounded,
                         color: Colors.green,
-                        title: "Payments",
-                        value: payments.toString(),
-                        page: const PaymentTeacherScreen(),
+                        title: "Leave Requests",
+                        value: requests.toString(),
+                        page: const LeaveApprovalListPage(),
                       ),
 
                       Container(

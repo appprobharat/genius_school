@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:genius_school/chatbot/chatbot_screen.dart';
 import 'package:genius_school/dashboard/student_sidebar.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -48,6 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> with RouteAware {
   List<dynamic> notices = [];
   List<dynamic> events = [];
   List<dynamic> siblings = [];
+  Map<String, dynamic> dashboardData = {};
 
   @override
   void didChangeDependencies() {
@@ -918,6 +919,40 @@ class _DashboardScreenState extends State<DashboardScreen> with RouteAware {
                 ),
               ],
             ),
+      floatingActionButton: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatBotScreen(dashboardData: dashboardData),
+            ),
+          );
+        },
+        child: Container(
+          width: 58,
+          height: 58,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF303F9F), Color(0xFF5C6BC0)],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.20),
+                blurRadius: 12,
+                offset: const Offset(0, 5),
+              ),
+            ],
+          ),
+          child: const Icon(
+            Icons.smart_toy_rounded,
+            color: Colors.white,
+            size: 29,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -1437,7 +1472,6 @@ class NoticesEventsToggle extends StatelessWidget {
             child: TabBarView(
               children: <Widget>[
                 _buildList(initialNotices, isEvent: false),
-
                 _buildList(initialEvents, isEvent: true),
               ],
             ),

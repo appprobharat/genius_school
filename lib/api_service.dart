@@ -19,7 +19,7 @@ class ApiService {
     iOptions: IOSOptions(accessibility: KeychainAccessibility.first_unlock),
   );
 
-  // ================= TOKEN =================
+ 
 
   static Future<String> _getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -41,7 +41,7 @@ class ApiService {
     return await _headers();
   }
 
-  // ================= LOGOUT =================
+
 
   static Future<void> forceLogout(BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();

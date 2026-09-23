@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:genius_school/api_service.dart';
 
 class AssignSkillsPage extends StatefulWidget {
@@ -364,7 +365,20 @@ class _AssignSkillsPageState extends State<AssignSkillsPage> {
                                   controller:
                                       gradeControllers[student['studentid']
                                           .toString()],
-                                  decoration: InputDecoration(
+                                  textCapitalization:
+                                      TextCapitalization.characters,
+                                  inputFormatters: [
+                                    TextInputFormatter.withFunction((
+                                      oldValue,
+                                      newValue,
+                                    ) {
+                                      return newValue.copyWith(
+                                        text: newValue.text.toUpperCase(),
+                                        selection: newValue.selection,
+                                      );
+                                    }),
+                                  ],
+                                  decoration: const InputDecoration(
                                     hintText: 'Grade',
                                     border: OutlineInputBorder(),
                                     isDense: true,
@@ -375,6 +389,7 @@ class _AssignSkillsPageState extends State<AssignSkillsPage> {
                                   ),
                                   onChanged: (val) {
                                     final grade = val.trim().toUpperCase();
+
                                     student['Grade'] = grade;
                                     student['status'] = grade.isNotEmpty
                                         ? 'Marked'
@@ -387,10 +402,11 @@ class _AssignSkillsPageState extends State<AssignSkillsPage> {
                                     );
 
                                     if (idx != -1) {
-                                      studentList[idx]['Grade'] = val;
+                                      studentList[idx]['Grade'] = grade;
                                       studentList[idx]['status'] =
                                           student['status'];
                                     }
+
                                     setState(() {});
                                   },
                                 ),
