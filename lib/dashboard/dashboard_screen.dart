@@ -149,6 +149,9 @@ class _DashboardScreenState extends State<DashboardScreen> with RouteAware {
       notices = data['notices'] ?? [];
       events = data['events'] ?? [];
       siblings = data['siblings'] ?? [];
+       setState(() {
+        dashboardData = data;
+      });
 
       return;
     }
