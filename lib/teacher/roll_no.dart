@@ -181,6 +181,7 @@ class _UpdateRollNoPageState extends State<UpdateRollNoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: const Text(
           "Update Roll No ",
@@ -282,25 +283,29 @@ class _UpdateRollNoPageState extends State<UpdateRollNoPage> {
           ),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
-          child: SizedBox(
-            height: 50,
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: updateRollNumbers,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+      bottomNavigationBar: AnimatedPadding(
+        duration: const Duration(milliseconds: 200),
+        padding: EdgeInsets.only(
+          left: 12,
+          right: 12,
+          top: 8,
+          bottom: MediaQuery.of(context).viewInsets.bottom + 12,
+        ),
+        child: SizedBox(
+          height: 50,
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: updateRollNumbers,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: const Text(
-                "Update Roll No",
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
+            ),
+            child: const Text(
+              "Update Roll No",
+              style: TextStyle(fontSize: 16, color: Colors.white),
             ),
           ),
         ),
